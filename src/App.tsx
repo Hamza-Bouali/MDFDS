@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { MapPin, Mail, Share2, ArrowRight, ChevronRight, Github, Linkedin, Calendar, Instagram } from "lucide-react"
-import { Lock, Code, Sparkles, Atom, Brain, Trophy, Users, Target } from "lucide-react"
+import { Lock, Code, Sparkles, Atom, Brain, Trophy, Users, Target,X } from "lucide-react"
 import HackathonTimeline from "./hackathon-timeline"
 import CountdownTimer from "./components/countdown-timer.tsx"
 
@@ -303,7 +303,15 @@ const HackathonWebsite = () => {
   ]
 
   
+  const [selectedImage, setSelectedImage] = useState<string | null>(null);
 
+  const openPreview = (image: string) => {
+    setSelectedImage(image);
+  };
+
+  const closePreview = () => {
+    setSelectedImage(null);
+  };
   
   const testimonials = [
     {
@@ -648,6 +656,7 @@ const HackathonWebsite = () => {
             {Gallery.map((image, index) => (
               <div
               key={index}
+              onClick={() => openPreview(image)}
               className={`relative overflow-hidden rounded-xl ${
                 index === 0 || index === 5 ? "col-span-2 row-span-2" : ""
               }`}
@@ -667,7 +676,24 @@ const HackathonWebsite = () => {
           </div>
         </div>
       </section>
-
+      {/* Image Preview Modal */}
+      {selectedImage && (
+        <div className="fixed inset-0 bg-black/70 flex items-center justify-center z-50">
+          <div className="relative">
+            <button
+              className="absolute top-4 right-4 bg-white/20 p-2 rounded-full text-white hover:bg-white/40 transition"
+              onClick={closePreview}
+            >
+              <X className="w-6 h-6 bg-white text-black" />
+            </button>
+            <img
+              src={selectedImage}
+              alt="Selected preview"
+              className="max-w-full max-h-screen rounded-lg"
+            />
+          </div>
+        </div>
+      )}
       {/* Footer */}
       <footer className="bg-blue-900/30 backdrop-blur-sm py-12 px-4 border-t border-blue-800/30">
         <div className="container mx-auto max-w-6xl">
