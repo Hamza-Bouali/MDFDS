@@ -1,12 +1,9 @@
-"use client"
-
 import { useState, useEffect } from "react"
 import { MapPin, Mail, Share2, ArrowRight, ChevronRight, Github, Linkedin, Calendar, Instagram } from "lucide-react"
 import { Lock, Code, Sparkles, Atom, Brain, Trophy, Users, Target,X } from "lucide-react"
 import HackathonTimeline from "./hackathon-timeline"
 import CountdownTimer from "./components/countdown-timer.tsx"
-
-
+const imageModules = import.meta.glob('/src/images/img/*.{png,jpg,jpeg,svg}', { eager: true });
 
 
 const Header = () => {
@@ -253,54 +250,9 @@ const Header = () => {
 
 const HackathonWebsite = () => {
 
-  const Gallery=[
-"src/images/img/DSC_2075.JPG",
-'src/images/img/DSC_2076.JPG',
-'src/images/img/DSC_2077.JPG',
-'src/images/img/DSC_2078.JPG',
-'src/images/img/DSC_2081.JPG',
-'src/images/img/DSC_2082.JPG',
-'src/images/img/DSC_2083.JPG',
-'src/images/img/DSC_2084.JPG',
-'src/images/img/DSC_2085.JPG',
-'src/images/img/DSC_2088.JPG',
-'src/images/img/DSC_2089.JPG',
-'src/images/img/DSC_2090.JPG',
-'src/images/img/DSC_2094.JPG',
-'src/images/img/DSC_2095.JPG',
-'src/images/img/DSC_2096.JPG',
-'src/images/img/DSC_2097.JPG',
-'src/images/img/DSC_2098.JPG',
-'src/images/img/DSC_2099.JPG',
-'src/images/img/DSC_2100.JPG',
-'src/images/img/DSC_2101.JPG',
-'src/images/img/DSC_2102.JPG',
-'src/images/img/DSC_2104.JPG',
-'src/images/img/DSC_2105.JPG',
-'src/images/img/DSC_2119.JPG',
-'src/images/img/DSC_2125.JPG',
-'src/images/img/DSC_2129.JPG',
-'src/images/img/DSC_2130.JPG',
-'src/images/img/DSC_2131.JPG',
-'src/images/img/DSC_2132.JPG',
-'src/images/img/DSC_2133.JPG',
-'src/images/img/DSC_2134.JPG',
-'src/images/img/DSC_2135.JPG',
-'src/images/img/DSC_2136.JPG',
-'src/images/img/DSC_2137.JPG',
-'src/images/img/DSC_2138.JPG',
-'src/images/img/DSC_2139.JPG',
-'src/images/img/DSC_2140.JPG',
-'src/images/img/DSC_2141.JPG',
-'src/images/img/DSC_2314.jpg',
-'src/images/img/DSC_2322.jpeg',
-'src/images/img/DSC_2331.jpeg',
-'src/images/img/DSC_2361.jpeg',
-'src/images/img/DSC_2362.jpeg',
-'src/images/img/first.jpeg',
-'src/images/img/sec.jpeg',
-'src/images/img/second.jpg',
-  ]
+  const images = Object.values(imageModules).map((module: any) => module.default);
+
+ 
 
   
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -653,7 +605,7 @@ const HackathonWebsite = () => {
           </h2>
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {Gallery.map((image, index) => (
+            {images.map((image, index) => (
               <div
               key={index}
               onClick={() => openPreview(image)}
