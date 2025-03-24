@@ -4,7 +4,7 @@ import { Lock, Code, Sparkles, Atom, Brain, Trophy, Users, Target,X } from "luci
 import HackathonTimeline from "./hackathon-timeline"
 import CountdownTimer from "./components/countdown-timer.tsx"
 const imageModules = import.meta.glob('/src/images/img/*.{png,jpg,jpeg,svg}', { eager: true });
-
+import Hero from './images/img/hero.jpeg'
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false)
@@ -101,7 +101,7 @@ const Header = () => {
                   <div 
                     className="absolute inset-0 bg-cover bg-center transform "
                     style={{ 
-                    backgroundImage: `url(src/images/img/hero.jpeg)`,
+                    backgroundImage: `url(${Hero})`,
                     }}
                   />
                   
