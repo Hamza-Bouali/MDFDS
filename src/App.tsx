@@ -62,9 +62,7 @@ const Header = () => {
 
   // Background images for the carousel
   const backgroundImages = [
-    "/images/img/sec.jpeg", // Replace with your actual image paths
-    "/api/placeholder/1920/1080",
-    "/api/placeholder/1920/1080",
+    "src/images/img/hero.jpeg",
   ]
 
   useEffect(() => {
@@ -102,20 +100,21 @@ const Header = () => {
               index === currentBackground ? "opacity-100" : "opacity-0"
             }`}
           >
-            {/* Background Image */}
-            <div 
-              className="absolute inset-0 bg-cover bg-center"
-              style={{ 
-                backgroundImage: `url(${imageSrc})`,
-              }}
-            />
-            
-            {/* Overlay to ensure text readability */}
-            <div className="absolute inset-0 bg-indigo-950/70" />
+           { /* Background Image */}
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center transform "
+                    style={{ 
+                    backgroundImage: `url(src/images/img/hero.jpeg)`,
+                    }}
+                  />
+                  
+                  {/* Overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-indigo-950/30" />
             
             {/* Additional overlay for depth */}
-            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/30 to-indigo-950/80" />
-          </div>
+        {/*<div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/30 to-indigo-950/80" />*/}          
+      
+      </div>
         ))}
       </div>
 
@@ -234,7 +233,7 @@ const Header = () => {
         <div className="hidden md:block relative w-1/3">
           <div className="absolute inset-0 bg-gradient-to-r from-indigo-500/20 to-purple-500/20 rounded-full filter blur-3xl animate-pulse" />
           <div className="relative grid grid-cols-2 gap-4">
-            {Array.from({ length: 4 }).map((_, i) => (
+            {/*Array.from({ length: 4 }).map((_, i) => (
               <div
                 key={i}
                 className="aspect-square bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-2xl backdrop-blur-sm border border-white/10"
@@ -243,7 +242,7 @@ const Header = () => {
                   animationDelay: `${i * 0.5}s`,
                 }}
               />
-            ))}
+            ))*/}
           </div>
         </div>
       </div>
@@ -254,13 +253,58 @@ const Header = () => {
 
 const HackathonWebsite = () => {
 
-  const [Gallery, setGallery] = useState<string[]>([]);
-  useEffect(() => {
-    fetch("/images/OneDrive_2_3-24-2025")
-      .then((res) => res.json())
-      .then((data) => setGallery(data))
-      .catch((err) => console.error("Failed to fetch gallery images:", err));
-  }, []);
+  const Gallery=[
+"src/images/img/DSC_2075.JPG",
+'src/images/img/DSC_2076.JPG',
+'src/images/img/DSC_2077.JPG',
+'src/images/img/DSC_2078.JPG',
+'src/images/img/DSC_2081.JPG',
+'src/images/img/DSC_2082.JPG',
+'src/images/img/DSC_2083.JPG',
+'src/images/img/DSC_2084.JPG',
+'src/images/img/DSC_2085.JPG',
+'src/images/img/DSC_2088.JPG',
+'src/images/img/DSC_2089.JPG',
+'src/images/img/DSC_2090.JPG',
+'src/images/img/DSC_2094.JPG',
+'src/images/img/DSC_2095.JPG',
+'src/images/img/DSC_2096.JPG',
+'src/images/img/DSC_2097.JPG',
+'src/images/img/DSC_2098.JPG',
+'src/images/img/DSC_2099.JPG',
+'src/images/img/DSC_2100.JPG',
+'src/images/img/DSC_2101.JPG',
+'src/images/img/DSC_2102.JPG',
+'src/images/img/DSC_2104.JPG',
+'src/images/img/DSC_2105.JPG',
+'src/images/img/DSC_2119.JPG',
+'src/images/img/DSC_2125.JPG',
+'src/images/img/DSC_2129.JPG',
+'src/images/img/DSC_2130.JPG',
+'src/images/img/DSC_2131.JPG',
+'src/images/img/DSC_2132.JPG',
+'src/images/img/DSC_2133.JPG',
+'src/images/img/DSC_2134.JPG',
+'src/images/img/DSC_2135.JPG',
+'src/images/img/DSC_2136.JPG',
+'src/images/img/DSC_2137.JPG',
+'src/images/img/DSC_2138.JPG',
+'src/images/img/DSC_2139.JPG',
+'src/images/img/DSC_2140.JPG',
+'src/images/img/DSC_2141.JPG',
+'src/images/img/DSC_2314.jpg',
+'src/images/img/DSC_2322.jpeg',
+'src/images/img/DSC_2331.jpeg',
+'src/images/img/DSC_2361.jpeg',
+'src/images/img/DSC_2362.jpeg',
+'src/images/img/first.jpeg',
+'src/images/img/sec.jpeg',
+'src/images/img/second.jpg',
+  ]
+
+  
+
+  
   const testimonials = [
     {
       name: "Kamiya OUDGHIRI",
