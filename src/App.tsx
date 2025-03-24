@@ -1,81 +1,122 @@
-import React, { useState, useEffect } from "react";
-import { MapPin, Phone, Mail, MessageSquare, Share2, ArrowRight, ChevronRight, Github, Linkedin, Twitter, Calendar } from "lucide-react";
-import { Lock, Code, Sparkles, Zap, Atom, Brain, Trophy, Users, Target } from "lucide-react";
-import HackathonTimeline from "./hackathon-timeline";
-import CountdownTimer from "./components/countdown-timer.tsx";
+"use client"
+
+import { useState, useEffect } from "react"
+import { MapPin, Mail, Share2, ArrowRight, ChevronRight, Github, Linkedin, Calendar, Instagram } from "lucide-react"
+import { Lock, Code, Sparkles, Atom, Brain, Trophy, Users, Target } from "lucide-react"
+import HackathonTimeline from "./hackathon-timeline"
+import CountdownTimer from "./components/countdown-timer.tsx"
+
+
+
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isLoaded, setIsLoaded] = useState(false);
-  const [activeFeature, setActiveFeature] = useState(0);
+  const [isScrolled, setIsScrolled] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false)
+  const [activeFeature, setActiveFeature] = useState(0)
+  const [currentBackground, setCurrentBackground] = useState(0)
+
+  // Add this at the top of the Header component, after the imports
+  // This is needed for the longer transition duration
+  useEffect(() => {
+    // Add custom CSS for longer transition duration
+    const style = document.createElement("style")
+    style.textContent = `
+    .duration-2000 {
+      transition-duration: 2000ms;
+    }
+  `
+    document.head.appendChild(style)
+
+    return () => {
+      document.head.removeChild(style)
+    }
+  }, [])
 
   const techFeatures = [
-    { 
-      name: "Advanced Tech", 
+    {
+      name: "Advanced Tech",
       icon: Atom,
-      description: "Cutting-edge technology and innovation platform"
+      description: "Cutting-edge technology and innovation platform",
     },
-    { 
-      name: "Data Analysis", 
+    {
+      name: "Data Analysis",
       icon: Code,
-      description: "Advanced data processing and analytics"
+      description: "Advanced data processing and analytics",
     },
-    { 
-      name: "Innovation", 
+    {
+      name: "Innovation",
       icon: Sparkles,
-      description: "Creative solutions for real-world challenges"
+      description: "Creative solutions for real-world challenges",
     },
-    { 
-      name: "AI & ML", 
+    {
+      name: "AI & ML",
       icon: Brain,
-      description: "State-of-the-art artificial intelligence"
+      description: "State-of-the-art artificial intelligence",
     },
-    { 
-      name: "Mystery", 
+    {
+      name: "Mystery",
       icon: Lock,
-      description: "Unlock the secrets of future technology"
+      description: "Unlock the secrets of future technology",
     },
-  ];
+  ]
+
+  // Background images for the carousel
+  const backgroundImages = [
+    "/images/img/sec.jpeg", // Replace with your actual image paths
+    "/api/placeholder/1920/1080",
+    "/api/placeholder/1920/1080",
+  ]
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener("scroll", handleScroll);
-    setIsLoaded(true);
+      setIsScrolled(window.scrollY > 50)
+    }
+    window.addEventListener("scroll", handleScroll)
+    setIsLoaded(true)
 
     // Auto-rotate features
     const interval = setInterval(() => {
-      setActiveFeature((prev) => (prev + 1) % techFeatures.length);
-    }, 3000);
+      setActiveFeature((prev) => (prev + 1) % techFeatures.length)
+    }, 3000)
+
+    // Background switching interval
+    const backgroundInterval = setInterval(() => {
+      setCurrentBackground((prev) => (prev + 1) % backgroundImages.length)
+    }, 8000) // Switch every 8 seconds
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
-      clearInterval(interval);
-    };
-  }, []);
+      window.removeEventListener("scroll", handleScroll)
+      clearInterval(interval)
+      clearInterval(backgroundInterval)
+    }
+  }, [])
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-indigo-950 via-purple-900 to-indigo-900 text-white relative overflow-hidden">
-      {/* Animated background elements */}
+    <div className="min-h-screen text-white relative overflow-hidden">
+      {/* Animated background elements - Image Carousel */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute w-full h-full bg-[radial-gradient(circle_at_50%_120%,rgba(120,119,198,0.3),rgba(255,255,255,0))]" />
-        <div className="absolute top-0 left-0 w-full h-full">
-          {Array.from({ length: 20 }).map((_, i) => (
-            <div
-              key={i}
-              className="absolute bg-white/5 rounded-full"
-              style={{
-                width: Math.random() * 300 + 50 + 'px',
-                height: Math.random() * 300 + 50 + 'px',
-                top: Math.random() * 100 + '%',
-                left: Math.random() * 100 + '%',
-                animation: `float ${Math.random() * 10 + 20}s linear infinite`,
-                opacity: Math.random() * 0.5,
+        {backgroundImages.map((imageSrc, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+              index === currentBackground ? "opacity-100" : "opacity-0"
+            }`}
+          >
+            {/* Background Image */}
+            <div 
+              className="absolute inset-0 bg-cover bg-center"
+              style={{ 
+                backgroundImage: `url(${imageSrc})`,
               }}
             />
-          ))}
-        </div>
+            
+            {/* Overlay to ensure text readability */}
+            <div className="absolute inset-0 bg-indigo-950/70" />
+            
+            {/* Additional overlay for depth */}
+            <div className="absolute inset-0 bg-gradient-to-b from-transparent via-indigo-950/30 to-indigo-950/80" />
+          </div>
+        ))}
       </div>
 
       {/* Navigation */}
@@ -87,14 +128,20 @@ const Header = () => {
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
             <img src="https://club-code.esi.ma/assets/logo-RJEgxBZ1.svg" alt="CODE-ESI" className="w-16 h-16" />
-            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="text-2xl font-bold bg-gradient-to-r from-indigo-200 to-purple-100 text-transparent bg-clip-text">
               CODE-ESI
             </span>
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="hover:text-indigo-300 transition-colors">About</a>
-            <a href="#prizes" className="hover:text-indigo-300 transition-colors">Prizes</a>
-            <a href="#timeline" className="hover:text-indigo-300 transition-colors">Timeline</a>
+            <a href="#about" className="hover:text-indigo-300 transition-colors">
+              About
+            </a>
+            <a href="#prizes" className="hover:text-indigo-300 transition-colors">
+              Prizes
+            </a>
+            <a href="#timeline" className="hover:text-indigo-300 transition-colors">
+              Timeline
+            </a>
             <button className="bg-gradient-to-r from-indigo-500 to-purple-600 text-white px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/20 transition-all transform hover:-translate-y-1">
               Join us
             </button>
@@ -106,7 +153,7 @@ const Header = () => {
       <div className="relative z-10 container mx-auto pt-32 px-6 flex flex-col md:flex-row items-center justify-between min-h-screen">
         <div className="max-w-2xl">
           <div
-            className={`inline-block px-4 py-1 bg-indigo-500/10 rounded-full text-indigo-300 mb-6
+            className={`inline-block px-4 py-1 bg-indigo-500/10 rounded-full text-indigo-100 mb-6
               transition-all duration-700 transform ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
             <span className="animate-pulse">CODE-ESI PRESENTS</span>
@@ -116,7 +163,7 @@ const Header = () => {
             className={`text-5xl md:text-7xl font-bold mb-8 leading-tight
               transition-all duration-700 delay-100 transform ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
-            <span className="bg-gradient-to-r from-indigo-400 via-purple-300 to-indigo-200 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-indigo-200 via-purple-300 to-indigo-100 text-transparent bg-clip-text">
               THE MOROCCAN DAYS OF
               <br />
               FUTURE DATA SCIENTISTS
@@ -201,10 +248,19 @@ const Header = () => {
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
 
 const HackathonWebsite = () => {
+
+  const [Gallery, setGallery] = useState<string[]>([]);
+  useEffect(() => {
+    fetch("/images/OneDrive_2_3-24-2025")
+      .then((res) => res.json())
+      .then((data) => setGallery(data))
+      .catch((err) => console.error("Failed to fetch gallery images:", err));
+  }, []);
   const testimonials = [
     {
       name: "Kamiya OUDGHIRI",
@@ -221,41 +277,44 @@ const HackathonWebsite = () => {
       text: "CODE-ESI delivered an exceptional masterclass last month! Their expertise and engaging teaching style made complex concepts easily understandable. Grateful for the valuable insights gained—a truly enriching experience!",
       stars: 5,
     },
-  ];
+  ]
 
   const teamMembers = [
     {
       name: "Morad EL MAZYANI",
       role: "Tech entrepreneur and digital expert with 16+ years of experience in Blockchain, Generative AI, and UX design. Collaborated with multinational organizations and government entities.",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
+      image:
+        "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80",
     },
     {
       name: "Youssef ELYAMANI",
       role: "Technical Director at CODE-ESI with 16+ years in digital transformation. Simplifies AI for large organizations as an entrepreneur, trainer, and coach.",
-      image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
+      image:
+        "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80",
     },
     {
       name: "Meryem NAIRI",
       role: "Software Engineer, AI Developer at Crafters Lab, and Trainer at AIcorner. Combines software engineering and advanced AI to craft innovative solutions.",
-      image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80"
-    }
-  ];
+      image:
+        "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&auto=format&fit=crop&w=256&h=256&q=80",
+    },
+  ]
 
   return (
-    <div className="min-h-screen bg-indigo-950 text-white">
+    <div className="min-h-screen bg-blue-950 text-white">
       {/* Header Section */}
       <Header />
 
       {/* Countdown Timer */}
-      <section className="py-16 px-4 bg-indigo-900/50 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-blue-900/50 backdrop-blur-sm">
         <CountdownTimer />
       </section>
 
       {/* About Section */}
-      <section className="py-16 px-4 bg-indigo-900/30 backdrop-blur-sm" id="about">
+      <section className="py-16 px-4 bg-blue-900/30 backdrop-blur-sm" id="about">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
               A Unique Opportunity
             </span>
           </h2>
@@ -268,10 +327,10 @@ const HackathonWebsite = () => {
                 "Compete for a chance to turn your prototype into a market-ready solution.",
                 "Network with industry leaders and top technology companies.",
               ].map((text, index) => (
-                <div key={index} className="flex items-start gap-4 bg-indigo-800/30 p-6 rounded-xl backdrop-blur-sm">
+                <div key={index} className="flex items-start gap-4 bg-blue-800/30 p-6 rounded-xl backdrop-blur-sm">
                   <div className="flex-shrink-0">
-                    <div className="w-8 h-8 bg-indigo-500/20 rounded-full flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-indigo-400" />
+                    <div className="w-8 h-8 bg-blue-500/20 rounded-full flex items-center justify-center">
+                      <Sparkles className="w-4 h-4 text-blue-400" />
                     </div>
                   </div>
                   <p className="text-gray-300">{text}</p>
@@ -279,9 +338,9 @@ const HackathonWebsite = () => {
               ))}
             </div>
             <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/20 to-purple-500/20 rounded-3xl filter blur-3xl" />
-              <div className="relative bg-indigo-800/30 p-8 rounded-3xl backdrop-blur-sm border border-indigo-500/20">
-                <h3 className="text-2xl font-bold mb-6 text-indigo-300">Why Participate?</h3>
+              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-500/20 rounded-3xl filter blur-3xl" />
+              <div className="relative bg-blue-800/30 p-8 rounded-3xl backdrop-blur-sm border border-blue-500/20">
+                <h3 className="text-2xl font-bold mb-6 text-blue-300">Why Participate?</h3>
                 <div className="space-y-4">
                   {[
                     { icon: Trophy, text: "Win amazing prizes worth 18,000 Dhs" },
@@ -290,8 +349,8 @@ const HackathonWebsite = () => {
                     { icon: Target, text: "Launch your tech career" },
                   ].map((item, index) => (
                     <div key={index} className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-indigo-500/20 rounded-full flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-indigo-400" />
+                      <div className="w-10 h-10 bg-blue-500/20 rounded-full flex items-center justify-center">
+                        <item.icon className="w-5 h-5 text-blue-400" />
                       </div>
                       <p className="text-gray-300">{item.text}</p>
                     </div>
@@ -307,7 +366,7 @@ const HackathonWebsite = () => {
       <section className="py-16 px-4" id="prizes">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
               Prizes & Rewards
             </span>
           </h2>
@@ -315,35 +374,31 @@ const HackathonWebsite = () => {
             {[
               {
                 title: "18,000 Dhs Cash Prize Pool",
-                details: [
-                  "10,000 Dhs - 1st Place",
-                  "5,000 Dhs - 2nd Place",
-                  "3,000 Dhs - 3rd Place"
-                ]
+                details: ["10,000 Dhs - 1st Place", "5,000 Dhs - 2nd Place", "3,000 Dhs - 3rd Place"],
               },
               {
                 title: "Incubation Program",
-                details: ["Full incubation support by CODE-ESI for the winning team"]
+                details: ["Full incubation support by CODE-ESI for the winning team"],
               },
               {
                 title: "Business Support",
-                details: ["Technical mentorship", "Market access support", "Business development"]
+                details: ["Technical mentorship", "Market access support", "Business development"],
               },
               {
                 title: "Launch Your Solution",
-                details: ["Transform your prototype", "Market-ready product", "Industry connections"]
-              }
+                details: ["Transform your prototype", "Market-ready product", "Industry connections"],
+              },
             ].map((prize, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-indigo-900/90 to-purple-900/90 p-6 rounded-xl backdrop-blur-sm border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300"
+                className="group relative bg-gradient-to-br from-blue-900/90 to-blue-900/90 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <h3 className="text-xl font-bold mb-4 text-indigo-300">{prize.title}</h3>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <h3 className="text-xl font-bold mb-4 text-blue-300">{prize.title}</h3>
                 <ul className="space-y-2">
                   {prize.details.map((detail, i) => (
                     <li key={i} className="text-gray-300 flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-indigo-400" />
+                      <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
                       {detail}
                     </li>
                   ))}
@@ -358,10 +413,10 @@ const HackathonWebsite = () => {
       <HackathonTimeline />
 
       {/* Evaluation Criteria */}
-      <section className="py-16 px-4 bg-indigo-900/30 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-blue-900/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
               Evaluation Criteria
             </span>
           </h2>
@@ -370,33 +425,33 @@ const HackathonWebsite = () => {
               {
                 title: "Functionality",
                 description: "Functional prototypes aligned with the mystery challenge.",
-                icon: Code
+                icon: Code,
               },
               {
                 title: "Innovation",
                 description: "Original ideas and differentiating solutions.",
-                icon: Sparkles
+                icon: Sparkles,
               },
               {
                 title: "Impact",
                 description: "Real-world applicability and potential to transform the industry.",
-                icon: Target
+                icon: Target,
               },
               {
                 title: "Technical Quality",
                 description: "Clean, well-documented, and efficient code.",
-                icon: Brain
-              }
+                icon: Brain,
+              },
             ].map((criteria, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-indigo-800/50 to-purple-800/50 p-6 rounded-xl backdrop-blur-sm border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300"
+                className="group relative bg-gradient-to-br from-blue-800/50 to-blue-800/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="w-12 h-12 bg-indigo-500/20 rounded-full flex items-center justify-center mb-4">
-                  <criteria.icon className="w-6 h-6 text-indigo-400" />
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="w-12 h-12 bg-blue-500/20 rounded-full flex items-center justify-center mb-4">
+                  <criteria.icon className="w-6 h-6 text-blue-400" />
                 </div>
-                <h3 className="text-xl font-bold mb-2 text-indigo-300">{criteria.title}</h3>
+                <h3 className="text-xl font-bold mb-2 text-blue-300">{criteria.title}</h3>
                 <p className="text-gray-300">{criteria.description}</p>
               </div>
             ))}
@@ -408,7 +463,7 @@ const HackathonWebsite = () => {
       <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
               Community Feedback
             </span>
           </h2>
@@ -416,12 +471,12 @@ const HackathonWebsite = () => {
             {testimonials.map((testimonial, index) => (
               <div
                 key={index}
-                className="group relative bg-gradient-to-br from-indigo-900/90 to-purple-900/90 p-6 rounded-xl backdrop-blur-sm border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300"
+                className="group relative bg-gradient-to-br from-blue-900/90 to-blue-900/90 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-indigo-500/10 to-purple-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="flex text-indigo-400 mb-4">{"★".repeat(testimonial.stars)}</div>
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="flex text-blue-400 mb-4">{"★".repeat(testimonial.stars)}</div>
                 <p className="text-gray-300 mb-4 italic">"{testimonial.text}"</p>
-                <p className="font-bold text-indigo-300">{testimonial.name}</p>
+                <p className="font-bold text-blue-300">{testimonial.name}</p>
               </div>
             ))}
           </div>
@@ -429,99 +484,208 @@ const HackathonWebsite = () => {
       </section>
 
       {/* Team Section */}
-      <section className="py-16 px-4 bg-indigo-900/30 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-blue-900/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-indigo-400 to-purple-400 text-transparent bg-clip-text">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
               Innovation Team
             </span>
           </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
             {teamMembers.map((member, index) => (
               <div
-              key={index}
-              className="group relative bg-gradient-to-br from-indigo-800/50 to-purple-800/50 p-6 rounded-xl backdrop-blur-sm border border-indigo-500/20 hover:border-indigo-400/40 transition-all duration-300 text-center"
+                key={index}
+                className="group relative bg-gradient-to-br from-blue-800/50 to-blue-800/50 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300 text-center"
               >
-              <img
-              src={member.image}
-              alt={member.name}
-              className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-indigo-500/20"
-              />
-              <h3 className="text-xl font-bold mb-2 text-indigo-300">{member.name}</h3>
-              <p className="text-gray-300 text-sm">{member.role}</p>
+                <img
+                  src={member.image || "/placeholder.svg"}
+                  alt={member.name}
+                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-blue-500/20"
+                />
+                <h3 className="text-xl font-bold mb-2 text-blue-300">{member.name}</h3>
+                <p className="text-gray-300 text-sm">{member.role}</p>
               </div>
             ))}
-            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Previous Editions Section */}
+     {/* <section className="py-16 px-4">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
+              Previous Editions
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            {[
+              {
+                year: "2024",
+                theme: "AI for Sustainable Development",
+                image: "/images/hackathon-2024.jpg",
+                highlights: [
+                  "Over 200 participants from across Morocco",
+                  "12 innovative projects developed",
+                  "Focus on environmental sustainability",
+                ],
+              },
+              {
+                year: "2023",
+                theme: "Future of FinTech",
+                image: "/images/hackathon-2023.jpg",
+                highlights: [
+                  "Partnership with major Moroccan banks",
+                  "15 teams competed for 15,000 Dhs in prizes",
+                  "2 projects received venture funding",
+                ],
+              },
+              {
+                year: "2022",
+                theme: "Healthcare Innovation",
+                image: "/images/hackathon-2022.jpg",
+                highlights: [
+                  "First national data science hackathon",
+                  "10 mentors from leading tech companies",
+                  "Winning solution deployed in local hospitals",
+                ],
+              },
+            ].map((edition, index) => (
+              <div
+                key={index}
+                className="group relative overflow-hidden rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
+              >
+                <div className="relative h-48 overflow-hidden">
+                  <img
+                    src={edition.image || "/placeholder.svg"}
+                    alt={`${edition.year} Hackathon`}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-blue-950 to-transparent opacity-70" />
+                  <div className="absolute bottom-0 left-0 p-4">
+                    <h3 className="text-2xl font-bold text-white">{edition.year}</h3>
+                  </div>
+                </div>
+                <div className="p-6 bg-gradient-to-br from-blue-900/90 to-blue-900/90">
+                  <h4 className="text-xl font-semibold mb-3 text-blue-300">{edition.theme}</h4>
+                  <ul className="space-y-2">
+                    {edition.highlights.map((highlight, i) => (
+                      <li key={i} className="text-gray-300 flex items-start gap-2">
+                        <div className="w-1.5 h-1.5 rounded-full bg-blue-400 mt-2" />
+                        <span>{highlight}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <button className="group bg-gradient-to-r from-blue-500 to-blue-600 text-white px-8 py-4 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 flex items-center gap-2 mx-auto">
+              View All Past Events
+              <ArrowRight className="transform group-hover:translate-x-1 transition-transform" />
+            </button>
+          </div>
+        </div>
+      </section>*/}
+
+      {/* Gallery Section */}
+      <section className="py-16 px-4 bg-blue-900/30 backdrop-blur-sm">
+        <div className="container mx-auto max-w-6xl">
+          <h2 className="text-4xl font-bold text-center mb-12">
+            <span className="bg-gradient-to-r from-blue-200 to-blue-200 text-transparent bg-clip-text">
+              Event Gallery
+            </span>
+          </h2>
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {Gallery.map((image, index) => (
+              <div
+              key={index}
+              className={`relative overflow-hidden rounded-xl ${
+                index === 0 || index === 5 ? "col-span-2 row-span-2" : ""
+              }`}
+              >
+              <img
+                src={image}
+                alt={`Gallery image ${index + 1}`}
+                className="w-full h-full object-cover aspect-square transition-transform duration-500 hover:scale-110"
+              />
+              <div className="absolute inset-0 bg-blue-950/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                <div className="bg-blue-900/80 p-2 rounded-full">
+                <Share2 className="w-6 h-6 text-white" />
+                </div>
+              </div>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="bg-indigo-900/30 backdrop-blur-sm py-12 px-4 border-t border-indigo-800/30">
+      <footer className="bg-blue-900/30 backdrop-blur-sm py-12 px-4 border-t border-blue-800/30">
         <div className="container mx-auto max-w-6xl">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
               <div className="flex items-center gap-2 mb-4">
-                <Sparkles className="w-6 h-6 text-indigo-400" />
+                <Sparkles className="w-6 h-6 text-blue-400" />
                 <h3 className="text-xl font-bold">CODE-ESI</h3>
               </div>
-              <p className="text-gray-300 mb-4">Making advanced AI accessible to all professionals</p>
+              <p className="text-gray-300 mb-4">One passion, one Family.</p>
               <div className="space-y-2">
                 <div className="flex items-center gap-2 text-gray-300">
-                  <MapPin className="w-4 h-4 text-indigo-400" />
-                  <span>7 Rue du Val Content, 92260 Fontenay-aux-Roses, France</span>
+                  <MapPin className="w-4 h-4 text-blue-400" />
+                  <span>Av. Allal Al Fassi,ESI, Rabat, Maroc</span>
                 </div>
+
                 <div className="flex items-center gap-2 text-gray-300">
-                  <Phone className="w-4 h-4 text-indigo-400" />
-                  <span>+33 7 55 53 93 27</span>
-                </div>
-                <div className="flex items-center gap-2 text-gray-300">
-                  <Mail className="w-4 h-4 text-indigo-400" />
-                  <span>info@aicrafters.com</span>
+                  <Mail className="w-4 h-4 text-blue-400" />
+                  <span>code@esi.ac.ma</span>
                 </div>
               </div>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-4">Services</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">Training Programs</li>
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">AI Coaching</li>
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">Contact</li>
-              </ul>
-            </div>
-
-            <div>
-              <h3 className="text-xl font-bold mb-4">Resources</h3>
-              <ul className="space-y-2 text-gray-300">
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">About Us</li>
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">Technology Blog</li>
-                <li className="hover:text-indigo-300 transition-colors cursor-pointer">E-books</li>
-              </ul>
             </div>
 
             <div>
               <h3 className="text-xl font-bold mb-4">Connect</h3>
               <div className="flex gap-4">
-                <a href="#" className="text-gray-300 hover:text-indigo-400 transition-colors">
+                <a
+                  href="https://github.com/CODE-ESI-CLUB"
+                  target="_blank"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  rel="noreferrer"
+                >
                   <Github className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-300 hover:text-indigo-400 transition-colors">
-                  <Linkedin className="w-6 h-6" />
+                <a
+                  href="https://www.instagram.com/code.esi/"
+                  target="_blank"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  rel="noreferrer"
+                >
+                  <Instagram className="w-6 h-6" />
                 </a>
-                <a href="#" className="text-gray-300 hover:text-indigo-400 transition-colors">
-                  <Twitter className="w-6 h-6" />
+                <a
+                  href="https://www.linkedin.com/company/codesi18/posts/?feedView=all"
+                  target="_blank"
+                  className="text-gray-300 hover:text-blue-400 transition-colors"
+                  rel="noreferrer"
+                >
+                  <Linkedin className="w-6 h-6" />
                 </a>
               </div>
             </div>
           </div>
 
-          <div className="mt-8 pt-8 border-t border-indigo-800/30 text-center text-gray-300">
+          <div className="mt-8 pt-8 border-t border-blue-800/30 text-center text-gray-300">
             <p>© 2025 CODE-ESI. All rights reserved. Terms & Conditions • Privacy Policy</p>
           </div>
         </div>
       </footer>
     </div>
-  );
-};
+  )
+}
 
-export default HackathonWebsite;
+export default HackathonWebsite
+
