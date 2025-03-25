@@ -169,7 +169,7 @@ export const opportunityPoints = [
 ];
 
 export const participationBenefits = [
-  { icon: Trophy, text: "Win amazing prizes worth 18,000 Dhs" },
+  { icon: Trophy, text: "Win amazing prizes" },
   { icon: Brain, text: "Access to cutting-edge AI resources" },
   { icon: Users, text: "Network with industry experts" },
   { icon: Target, text: "Launch your tech career" },
