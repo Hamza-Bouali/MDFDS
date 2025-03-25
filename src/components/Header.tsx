@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { MapPin, Calendar, ChevronRight, ArrowRight } from "lucide-react";
 import { backgroundImages, techFeatures, EVENT_DATE, EVENT_LOCATION } from "../data";
 import MDFDS from "../assests/mdfds.png";
-
+import code from '../assests/code.png'
 export const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
@@ -67,18 +67,18 @@ export const Header = () => {
       >
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-        <img src="https://club-code.esi.ma/assets/logo-RJEgxBZ1.svg" alt="CODE-ESI" className="w-16 h-16" />
+        <img src={code} alt="CODE-ESI" className="w-28 h-28  " />
           </div>
           <div className="hidden md:flex items-center gap-8">
         <a href="#about" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
           About
         </a>
-        <a href="#prizes" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+        {/*<a href="#prizes" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
           Prizes
         </a>
         <a href="#timeline" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
           Timeline
-        </a>
+        </a>*/}
         <button className="bg-gradient-to-r from-[#93C5FD] to-[#60A5FA] text-[#1E3A8A] px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1">
           Join us
         </button>
@@ -200,12 +200,12 @@ export const Header = () => {
                 key={i}
                 className="bg-gradient-to-br from-[#1E3A8A] to-[#93C5FD]/10 rounded-2xl flex items-center justify-center"
                 style={{
-                animation: `float ${3}s ease-in-out infinite`,
+                animation: `float ${1.5}s linear infinite`,
                 animationDelay: `${i * 5}s`,
-                width: "200%",
+                width: "300%",
                 }}
                 >
-                <img src={MDFDS} alt="MDFDS Logo" className="h-96 w-96 object-contain" />
+                <img src={MDFDS} alt="MDFDS Logo" className="min-h-full min-w-full object-contain p-5" />
                 </div>
             ))}
           </div>
