@@ -181,10 +181,10 @@ export const Header = () => {
             className={`flex flex-wrap gap-4 mb-12
               transition-all duration-700 delay-500 transform ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
           >
-            <button className="group bg-gradient-to-r from-[#93C5FD] to-[#60A5FA] text-[#1E3A8A] px-8 py-4 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 flex items-center gap-2">
+            {/*<button className="group bg-gradient-to-r from-[#93C5FD] to-[#60A5FA] text-[#1E3A8A] px-8 py-4 rounded-full font-semibold transition-all hover:shadow-lg hover:shadow-blue-500/20 transform hover:-translate-y-1 flex items-center gap-2">
               Submit your project
               <ArrowRight className="transform group-hover:translate-x-1 transition-transform" />
-            </button>
+            </button>*/}
             <button className="group px-8 py-4 rounded-full font-semibold border border-[#60A5FA]/50 hover:bg-[#60A5FA]/20 text-[#60A5FA] transition-all flex items-center gap-2">
               Discover More
               <ChevronRight className="transform group-hover:translate-x-1 transition-transform" />

@@ -9,7 +9,8 @@ import code from "./assests/icon.png";
 import { HackathonTimeline } from "./components/HackathonTimeline";
 import { CountdownTimer } from "./components/CountdownTimer";
 import { Header } from "./components/Header";
-
+import DataCamp from './assests/DC_Donates_logo_inverted.png';
+import Cyber from './assests/cyber.png';
 // Import data
 import { 
   testimonials, 
@@ -20,21 +21,206 @@ import {
   prizes
 } from "./data";
 
+
+
+type Sponsor = {
+  name: string
+  logo: string
+  url: string
+  tier: 'platinum' | 'gold' | 'silver' | 'partner'
+  text:string
+}
+
+
 const HackathonWebsite = () => {
   const images = Object.values(imageModules).map((module: any) => module.default);
-  
+  const sponsors: Sponsor[] = [
+    {
+      name: "DataCamp",
+      logo: DataCamp,
+      url: "https://www.datacamp.com/",
+      tier: "platinum",
+      text:"DataCamp equips individuals and companies with the practical skills and tools they need to excel in today's fast-paced, data-driven world."
+    },
+    {
+      name:"cyber Cohesion",
+      logo: Cyber,
+      url: "https://www.cybercohesions.com/",
+      tier: "platinum",
+      text:"DataCamp equips individuals and companies with the practical skills and tools they need to excel in today's fast-paced, data-driven world."
+    }
+    
+  ]
+
+  const sponsorTiers = {
+    platinum: sponsors.filter(s => s.tier === 'platinum'),
+    gold: sponsors.filter(s => s.tier === 'gold'),
+    silver: sponsors.filter(s => s.tier === 'silver'),
+    partners: sponsors.filter(s => s.tier === 'partner')
+  }
+
   return (
     <div className="min-h-screen bg-[#010084] text-white relative overflow-hidden">
       {/* Header Section */}
       <Header />
 
-
-      {/* Separator */}
-      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Countdown Timer */}
-      {<section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
         <CountdownTimer />
-      </section>}
+      </section>
+      {/* Sponsors Section */}
+
+      <section className="py-16 px-4 bg-gradient-to-b from-[#010084]/50 to-[#220066]/80" id="sponsors">
+        <div className="container mx-auto max-w-6xl">
+          
+          <h2 className="text-8xl md:text-6xl font-bold text-center mb-16">
+            <span className="bg-gradient-to-r from-[#00CFFF] to-[#C4E2ED] text-transparent bg-clip-text">
+              Our Sponsors
+            </span>
+          </h2>
+            {sponsors.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold text-center mb-10 text-[#00CFFF]">
+              
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center">
+              {sponsors.map((sponsor, index) => (
+                <div className="max-w-md mx-auto bg-gradient-to-br from-[#010084]/50 to-[#220066]/80 border border-blue-700 rounded-xl shadow-lg p-8 hover:shadow-2xl transition-shadow duration-300 hover:from-[#010084]/80 hover:to-[#220066]/100">
+                  <a href={sponsor.url} target="_blank" rel="noopener noreferrer" className="flex justify-center">
+                  <img className="rounded-lg bg-transparent h-28 object-contain grayscale hover:grayscale-0 transition-all duration-300" src={sponsor.logo} alt={sponsor.name} />
+                  </a>
+                  <div className="pt-6 text-center">
+                  <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
+                    <h5 className="mb-3 text-2xl font-bold tracking-tight text-gray-400 hover:text-blue-400 transition-colors duration-300">{sponsor.name}</h5>
+                  </a>
+                  <p className="mb-4 font-normal text-gray-400 hover:text-gray-300 transition-colors duration-300">
+                    {sponsor.text}
+                  </p>{/*
+                  <a
+                    href="#"
+                    className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-blue-300"
+                  >
+                    Read more
+                    <svg className="rtl:rotate-180 w-4 h-4 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                    <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+                    </svg>
+                  </a>*/}
+                  </div>
+                </div>
+              ))}
+              </div>
+            </div>
+            )}
+
+
+          {/* Platinum Sponsors */}
+          {/*{sponsorTiers.platinum.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
+                Platinum Sponsors
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center">
+                {sponsorTiers.platinum.map((sponsor, index) => (
+                  <a
+                    key={index}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center p-8 bg-[#010084]/30 backdrop-blur-sm rounded-2xl border-2 border-[#C4E2ED]/30 hover:border-[#C4E2ED]/70 transition-all duration-300 hover:scale-105"
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className="max-h-24 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )*/}
+
+          {/* Gold Sponsors */}
+          {/*sponsorTiers.gold.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
+                Gold Sponsors
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
+                {sponsorTiers.gold.map((sponsor, index) => (
+                  <a
+                    key={index}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center p-6 bg-[#010084]/30 backdrop-blur-sm rounded-xl border border-[#C4E2ED]/20 hover:border-[#C4E2ED]/50 transition-all duration-300 hover:scale-105"
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className="max-h-20 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )*/}
+
+          {/* Silver Sponsors */}
+          {/*sponsorTiers.silver.length > 0 && (
+            <div className="mb-20">
+              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
+                Silver Sponsors
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
+                {sponsorTiers.silver.map((sponsor, index) => (
+                  <a
+                    key={index}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center p-4 bg-[#010084]/30 backdrop-blur-sm rounded-lg border border-[#C4E2ED]/10 hover:border-[#C4E2ED]/30 transition-all duration-300 hover:scale-105"
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className="max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )*/}
+
+          {/* Partners */}
+          {/*sponsorTiers.partners.length > 0 && (
+            <div>
+              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
+                Partners
+              </h3>
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
+                {sponsorTiers.partners.map((sponsor, index) => (
+                  <a
+                    key={index}
+                    href={sponsor.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group flex items-center justify-center p-4 bg-[#010084]/20 backdrop-blur-sm rounded-lg hover:bg-[#010084]/30 transition-all duration-300"
+                  >
+                    <img
+                      src={sponsor.logo}
+                      alt={sponsor.name}
+                      className="max-h-14 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
+                    />
+                  </a>
+                ))}
+              </div>
+            </div>
+          )*/}
+
+          {/* Become a Sponsor CTA */}
+          
+        </div>
+      </section>
 
       {/* About Section */}
       <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm" id="about">
@@ -78,8 +264,8 @@ const HackathonWebsite = () => {
         </div>
       </section>
 
-      {/* Prize Section */}
-      {/*<section className="py-16 px-4" id="prizes">
+                  
+     {/* <section className="py-16 px-4" id="prizes">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -108,16 +294,11 @@ const HackathonWebsite = () => {
         </div>
       </section>*/}
 
-      
-    {/* Separator */}
-    <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Timeline Section */}
-      
      {/* <HackathonTimeline />*/}
-      
 
       {/* Evaluation Criteria */}
-      {/*<section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -140,10 +321,10 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>
 
       {/* Testimonials Section */}
-      {/*<section className="py-16 px-4">
+      <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -164,10 +345,10 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>
 
       {/* Team Section */}
-     {/* <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -191,10 +372,8 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>
 
-      {/* Separator */}
-      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Gallery Section */}
       <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
@@ -224,9 +403,11 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>
-            {/* Separator */}
-      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
+      </section> {/* End of Gallery Section */}
+
+      {/* Sponsors Section */}
+      
+          
       {/* Footer */}
       <footer className="bg-[#010084]/30 backdrop-blur-sm py-12 px-4 border-t border-[#C4E2ED]/30">
         <div className="container mx-auto max-w-6xl">
