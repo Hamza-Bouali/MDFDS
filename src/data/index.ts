@@ -162,7 +162,7 @@ export const evaluationCriteria = [
 ];
 
 export const opportunityPoints = [
-  "Learn cutting-edge technologies with AI, voice recognition, and advanced data processing.",
+  
   "Collaborate with like-minded innovators and experienced technology mentors.",
   "Compete for a chance to turn your prototype into a market-ready solution.",
   "Network with industry leaders and top technology companies.",
