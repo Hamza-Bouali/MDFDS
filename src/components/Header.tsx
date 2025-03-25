@@ -135,13 +135,12 @@ export const Header = () => {
               FUTURE DATA SCIENTISTS
             </span>
           </h1>
-          <div
+            <div
             className={`text-xl text-gray-300 mb-12 max-w-xl
               transition-all duration-700 delay-200 transform ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}
-          >
-            Join us for a 2-day hackathon to learn, collaborate, and compete with the best minds in the industry.
-            Transform your ideas into reality with cutting-edge AI and machine learning.
-          </div>
+            >
+            Join us for an exciting 2-day hackathon to innovate, collaborate, and compete with top industry talent. Turn your ideas into reality using cutting-edge AI and machine learning technologies.
+            </div>
           <div
             className={`flex items-center gap-4 mb-12
               transition-all duration-700 delay-300 transform ${isLoaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"}`}

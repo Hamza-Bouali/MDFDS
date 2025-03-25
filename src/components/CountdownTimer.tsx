@@ -74,7 +74,7 @@ export const CountdownTimer = () => {
       </div>
       <div className="text-center mt-8 text-[#93C5FD] max-w-2xl mx-auto">
         <p className="italic">
-          "The nature of the challenge remains shrouded in mystery. All will be revealed when the countdown reaches
+          "The theme of the hackathon remains shrouded in mystery. All will be revealed when the countdown reaches
           zero."
         </p>
       </div>

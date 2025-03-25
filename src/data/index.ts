@@ -5,7 +5,7 @@ import {
 import { TimelineEvent, Testimonial, TeamMember, TechFeature } from "../types";
 
 export const EVENT_DATE = "April 05, 2025 00:00:00";
-export const EVENT_LOCATION = "Rabat, Morocco";
+export const EVENT_LOCATION = "ESI, Rabat, Morocco";
 
 export const timelineEvents: TimelineEvent[] = [
   {
@@ -16,7 +16,7 @@ export const timelineEvents: TimelineEvent[] = [
       "Team formation and registration",
       "Revealing the theme ",
       "Technical resources distribution",
-    ],
+    ],  
     icon: ClipboardList,
     color: "from-[#1E3A8A]/20 to-[#93C5FD]/20",
     time: "09:00 AM",
