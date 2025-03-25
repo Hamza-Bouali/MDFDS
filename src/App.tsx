@@ -339,7 +339,7 @@ const HackathonWebsite = () => {
       </section>*/}
 
       {/* Team Section */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      {/*<section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -363,7 +363,7 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>*/}
 
       {/* Gallery Section */}
       <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
