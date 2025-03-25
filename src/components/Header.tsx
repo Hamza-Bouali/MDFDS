@@ -191,17 +191,17 @@ export const Header = () => {
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A8A]/20 to-[#93C5FD]/20 rounded-full filter blur-3xl animate-pulse" />
           <div className="relative grid grid-cols-2 gap-4">
             {Array.from({ length: 1 }).map((_, i) => (
-              <div
-              key={i}
-              className="bg-gradient-to-br from-[#1E3A8A]/10 to-[#93C5FD]/10 rounded-5xl backdrop-blur-sm border-[#93C5FD]/50 flex items-center justify-center"
-              style={{
-                animation: `float ${2.5}s ease-in-out infinite, pulse ${3}s ease-in-out infinite`,
+                <div
+                key={i}
+                className="bg-gradient-to-br from-[#1E3A8A]/80 to-[#93C5FD]/10 rounded-2xl flex items-center justify-center"
+                style={{
+                animation: `float ${2.5}s ease-in-out infinite, pulse ${3}s  infinite`,
                 animationDelay: `${i * 0.5}s`,
                 width: "200%",
-              }}
-              >
-              <img src={MDFDS} alt="MDFDS Logo" className="h-96 w-96 object-contain" />
-              </div>
+                }}
+                >
+                <img src={MDFDS} alt="MDFDS Logo" className="h-96 w-96 object-contain" />
+                </div>
             ))}
           </div>
         </div>

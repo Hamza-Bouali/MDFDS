@@ -14,7 +14,7 @@ export const timelineEvents: TimelineEvent[] = [
     description: [
       "Welcome address and event overview",
       "Team formation and registration",
-      "Mystery challenge reveal",
+      "Revealing the theme ",
       "Technical resources distribution",
     ],
     icon: ClipboardList,
