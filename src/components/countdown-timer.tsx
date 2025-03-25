@@ -55,7 +55,7 @@ export default function CountdownTimer() {
 
   return (
     <div className="w-full max-w-4xl mx-auto py-8">
-      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-indigo-300">
+      <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-blue-300">
         Countdown to the Mystery Begins
       </h2>
 
@@ -63,20 +63,20 @@ export default function CountdownTimer() {
         {timeUnits.map((unit, index) => (
           <div key={index} className="flex flex-col items-center">
             <div
-              className={`w-24 h-24 md:w-32 md:h-32 bg-indigo-900/60 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg border border-indigo-700/50 transition-all duration-300 ${
-                unit.label === "Seconds" && isAnimating ? "scale-105 bg-indigo-800/70" : ""
+              className={`w-24 h-24 md:w-32 md:h-32 bg-blue-900/60 backdrop-blur-sm rounded-2xl flex items-center justify-center shadow-lg border border-blue-700/50 transition-all duration-300 ${
+                unit.label === "Seconds" && isAnimating ? "scale-105 bg-blue-800/70" : ""
               }`}
             >
               <span className="text-4xl md:text-5xl font-bold text-white">
                 {unit.value < 10 ? `0${unit.value}` : unit.value}
               </span>
             </div>
-            <span className="mt-2 text-indigo-300 font-medium">{unit.label}</span>
+            <span className="mt-2 text-blue-300 font-medium">{unit.label}</span>
           </div>
         ))}
       </div>
 
-      <div className="text-center mt-8 text-indigo-200 max-w-2xl mx-auto">
+      <div className="text-center mt-8 text-blue-200 max-w-2xl mx-auto">
         <p className="italic">
           "The nature of the challenge remains shrouded in mystery. All will be revealed when the countdown reaches
           zero."
