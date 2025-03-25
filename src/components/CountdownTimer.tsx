@@ -54,7 +54,7 @@ export const CountdownTimer = () => {
   return (
     <div className="w-full max-w-4xl mx-auto py-8">
       <h2 className="text-2xl md:text-3xl font-bold text-center mb-8 text-[#93C5FD]">
-        Countdown to the Mystery Begins
+        Countdown to the beginning of the event
       </h2>
       <div className="flex flex-wrap justify-center gap-4 md:gap-8">
         {timeUnits.map((unit, index) => (

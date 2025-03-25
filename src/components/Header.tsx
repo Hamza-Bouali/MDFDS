@@ -198,10 +198,10 @@ export const Header = () => {
             {Array.from({ length: 1 }).map((_, i) => (
                 <div
                 key={i}
-                className="bg-gradient-to-br from-[#1E3A8A]/80 to-[#93C5FD]/10 rounded-2xl flex items-center justify-center"
+                className="bg-gradient-to-br from-[#1E3A8A] to-[#93C5FD]/10 rounded-2xl flex items-center justify-center"
                 style={{
-                animation: `float ${2.5}s ease-in-out infinite, pulse ${3}s  infinite`,
-                animationDelay: `${i * 0.5}s`,
+                animation: `float ${3}s ease-in-out infinite`,
+                animationDelay: `${i * 5}s`,
                 width: "200%",
                 }}
                 >
