@@ -68,9 +68,9 @@ const HackathonWebsite = () => {
       <section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
         <CountdownTimer />
       </section>
-      {/* Sponsors Section */}
+      {/* Sponsors Section bg-gradient-to-b from-[#010084]/50 to-[#220066]/80 */}
 
-      {<section className="py-16 px-4 bg-gradient-to-b from-[#010084]/50 to-[#220066]/80" id="sponsors">
+      {<section className="py-16 px-4  bg-transparent" id="sponsors">
         <div className="container mx-auto max-w-6xl">
           
           {/*<h2 className="text-8xl md:text-6xl font-bold text-center mb-16">
