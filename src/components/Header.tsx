@@ -67,7 +67,7 @@ export const Header = () => {
       >
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-        <img src={code} alt="CODE-ESI" className="w-28 h-28  " />
+        <img src={code} alt="CODE-ESI" className="w-24 h-24  " />
           </div>
           <div className="hidden md:flex items-center gap-8">
         <a href="#about" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
@@ -192,7 +192,7 @@ export const Header = () => {
           </div>
         </div>
         {/* Decorative Right Side */}
-        <div className="hidden md:block relative w-1/3">
+        <div className="hidden md:block relative w-1/3 mr-10">
           <div className="absolute inset-0 bg-gradient-to-r from-[#1E3A8A]/20 to-[#93C5FD]/20 rounded-full filter blur-3xl animate-pulse" />
           <div className="relative grid grid-cols-2 gap-4">
             {Array.from({ length: 1 }).map((_, i) => (
