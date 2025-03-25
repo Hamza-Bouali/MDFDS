@@ -28,6 +28,9 @@ const HackathonWebsite = () => {
       {/* Header Section */}
       <Header />
 
+
+      {/* Separator */}
+      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Countdown Timer */}
       <section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
         <CountdownTimer />
@@ -105,8 +108,13 @@ const HackathonWebsite = () => {
         </div>
       </section>
 
+      
+    {/* Separator */}
+    <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Timeline Section */}
+      
       <HackathonTimeline />
+      
 
       {/* Evaluation Criteria */}
       {/*<section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
@@ -185,6 +193,8 @@ const HackathonWebsite = () => {
         </div>
       </section>*/}
 
+      {/* Separator */}
+      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Gallery Section */}
       <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
@@ -215,7 +225,8 @@ const HackathonWebsite = () => {
           </div>
         </div>
       </section>
-
+            {/* Separator */}
+      <div className="h-1 bg-gradient-to-r from-[#13157c] to-[#13157c] " />
       {/* Footer */}
       <footer className="bg-[#010084]/30 backdrop-blur-sm py-12 px-4 border-t border-[#C4E2ED]/30">
         <div className="container mx-auto max-w-6xl">

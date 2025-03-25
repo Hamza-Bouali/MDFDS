@@ -62,54 +62,59 @@ export const Header = () => {
       {/* Navigation */}
       <nav
         className={`fixed w-full z-50 transition-all duration-300 ${
-          isScrolled ? "bg-[#1E3A8A]/95 shadow-lg backdrop-blur-sm" : "bg-transparent"
+          isScrolled ? "bg-[#1E3A8A] shadow-lg backdrop-blur-sm" : "bg-[#1E3A8A]/50"
         }`}
       >
         <div className="container mx-auto px-6 py-4 flex justify-between items-center">
           <div className="flex items-center gap-2">
-            <img src="https://club-code.esi.ma/assets/logo-RJEgxBZ1.svg" alt="CODE-ESI" className="w-16 h-16" />
+        <img src="https://club-code.esi.ma/assets/logo-RJEgxBZ1.svg" alt="CODE-ESI" className="w-16 h-16" />
           </div>
           <div className="hidden md:flex items-center gap-8">
-            <a href="#about" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-              About
-            </a>
-            <a href="#prizes" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-              Prizes
-            </a>
-            <a href="#timeline" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-              Timeline
-            </a>
-            <button className="bg-gradient-to-r from-[#93C5FD] to-[#93C5FD] text-[#1E3A8A] px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1">
-              Join us
-            </button>
+        <a href="#about" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          About
+        </a>
+        <a href="#prizes" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          Prizes
+        </a>
+        <a href="#timeline" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          Timeline
+        </a>
+        <button className="bg-gradient-to-r from-[#93C5FD] to-[#60A5FA] text-[#1E3A8A] px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1">
+          Join us
+        </button>
           </div>
           {/* Mobile Menu Button */}
           <button
-            className="md:hidden text-white font-medium hover:text-[#93C5FD] transition-colors"
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        className="md:hidden text-[#93C5FD] font-medium hover:text-white transition-colors"
+        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+        aria-expanded={isMobileMenuOpen}
+        aria-label="Toggle mobile menu"
           >
-            Menu
+        Menu
           </button>
-        </div>
-        {/* Mobile Menu */}
-        {isMobileMenuOpen && (
-          <div className="md:hidden bg-[#1E3A8A]/95 shadow-lg">
-            <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
-              <a href="#about" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-                About
-              </a>
-              <a href="#prizes" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-                Prizes
-              </a>
-              <a href="#timeline" className="text-white font-medium hover:text-[#93C5FD] transition-colors">
-                Timeline
-              </a>
-              <button className="bg-gradient-to-r from-[#93C5FD] to-[#93C5FD] text-[#1E3A8A] px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1">
-                Join us
-              </button>
-            </div>
+        <div
+          className={`md:hidden bg-[#1E3A8A]/95 shadow-lg transition-all duration-300 ${
+        isMobileMenuOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
+          } overflow-hidden`}
+          aria-hidden={!isMobileMenuOpen}
+        >
+          <div className="container mx-auto px-6 py-4 flex flex-col gap-4">
+        <a href="#about" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          About
+        </a>
+        <a href="#prizes" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          Prizes
+        </a>
+        <a href="#timeline" className="text-[#93C5FD] font-medium hover:text-white transition-colors">
+          Timeline
+        </a>
+        <button className="bg-gradient-to-r from-[#93C5FD] to-[#60A5FA] text-[#1E3A8A] px-6 py-2 rounded-full font-semibold hover:shadow-lg hover:shadow-blue-500/20 transition-all transform hover:-translate-y-1">
+          Join us
+        </button>
           </div>
-        )}
+        </div>
+          </div>
+        
       </nav>
       {/* Hero Content */}
       <div className="relative z-10 container mx-auto pt-32 px-6 flex flex-col md:flex-row items-center justify-between min-h-screen">
