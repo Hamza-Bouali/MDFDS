@@ -1,5 +1,6 @@
 "use client"
 
+import { useState } from "react";
 import { Mail, Share2, Github, Linkedin, Instagram, MapPin } from "lucide-react"
 import { Code, Sparkles, Brain, Trophy, Users, Target } from "lucide-react"
 const imageModules = import.meta.glob('/src/images/img/*.{png,jpg,jpeg,svg}', { eager: true });
@@ -33,6 +34,14 @@ type Sponsor = {
 
 
 const HackathonWebsite = () => {
+  const [showSponsors, setShowSponsors] = useState(false);
+  const [showAbout, setShowAbout] = useState(true);
+  const [showPrizes, setShowPrizes] = useState(false);
+  const [showTimeline, setShowTimeline] = useState(false);
+  const [showEvaluationCriteria, setShowEvaluationCriteria] = useState(true);
+  const [showTestimonials, setShowTestimonials] = useState(false);
+  const [showTeam, setShowTeam] = useState(false);
+  const [showGallery, setShowGallery] = useState(true);
   const images = Object.values(imageModules).map((module: any) => module.default);
   const sponsors: Sponsor[] = [
     {
@@ -70,15 +79,15 @@ const HackathonWebsite = () => {
       </section>
       {/* Sponsors Section bg-gradient-to-b from-[#010084]/50 to-[#220066]/80 */}
 
-      {<section className="py-16 px-4  bg-transparent" id="sponsors">
+      {showSponsors && <section className="py-16 px-4  bg-transparent" id="sponsors">
         <div className="container mx-auto max-w-6xl">
           
-          {/*<h2 className="text-8xl md:text-6xl font-bold text-center mb-16">
+          <h2 className="text-8xl md:text-6xl font-bold text-center mb-16">
             <span className="bg-gradient-to-r from-[#00CFFF] to-[#C4E2ED] text-transparent bg-clip-text">
               Our Sponsors
             </span>
-          </h2>*/}
-            {/*sponsors.length > 0 && (
+          </h2>
+            {sponsors.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold text-center mb-10 text-[#00CFFF]">
               
@@ -101,11 +110,11 @@ const HackathonWebsite = () => {
               ))}
               </div>
             </div>
-            )*/}
+            )}
 
 
           {/* Platinum Sponsors */}
-          {/*{sponsorTiers.platinum.length > 0 && (
+          {sponsorTiers.platinum.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
                 Platinum Sponsors
@@ -128,10 +137,10 @@ const HackathonWebsite = () => {
                 ))}
               </div>
             </div>
-          )*/}
+          )}
 
           {/* Gold Sponsors */}
-          {/*sponsorTiers.gold.length > 0 && (
+          {sponsorTiers.gold.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
                 Gold Sponsors
@@ -154,10 +163,10 @@ const HackathonWebsite = () => {
                 ))}
               </div>
             </div>
-          )*/}
+          )}
 
           {/* Silver Sponsors */}
-          {/*sponsorTiers.silver.length > 0 && (
+          {sponsorTiers.silver.length > 0 && (
             <div className="mb-20">
               <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
                 Silver Sponsors
@@ -180,10 +189,10 @@ const HackathonWebsite = () => {
                 ))}
               </div>
             </div>
-          )*/}
+          )}
 
           {/* Partners */}
-          {/*sponsorTiers.partners.length > 0 && (
+          {sponsorTiers.partners.length > 0 && (
             <div>
               <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
                 Partners
@@ -206,7 +215,7 @@ const HackathonWebsite = () => {
                 ))}
               </div>
             </div>
-          )*/}
+          )}
 
           {/* Become a Sponsor CTA */}
           
@@ -214,7 +223,7 @@ const HackathonWebsite = () => {
       </section>}
 
       {/* About Section */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm" id="about">
+      {showAbout && <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm" id="about">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -253,10 +262,10 @@ const HackathonWebsite = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section>}
 
                   
-     {/* <section className="py-16 px-4" id="prizes">
+     {showPrizes && <section className="py-16 px-4" id="prizes">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -283,13 +292,13 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>}
 
       {/* Timeline Section */}
-     {/* <HackathonTimeline />*/}
+     {showTimeline && <HackathonTimeline />}
 
       {/* Evaluation Criteria */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      {showEvaluationCriteria && <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -312,10 +321,10 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>
+      </section>}
 
       {/* Testimonials Section */}
-      {/*<section className="py-16 px-4">
+      {showTestimonials && <section className="py-16 px-4">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -336,10 +345,10 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>}
 
       {/* Team Section */}
-      {/*<section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      {showTeam && <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -363,10 +372,10 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section>*/}
+      </section>}
 
       {/* Gallery Section */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+      {showGallery && <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
         <div className="container mx-auto max-w-6xl">
           <h2 className="text-4xl font-bold text-center mb-12">
             <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
@@ -394,7 +403,7 @@ const HackathonWebsite = () => {
             ))}
           </div>
         </div>
-      </section> {/* End of Gallery Section */}
+      </section>} {/* End of Gallery Section */}
 
       {/* Sponsors Section */}
       
