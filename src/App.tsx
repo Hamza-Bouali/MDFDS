@@ -1,400 +1,72 @@
 "use client"
 
 import { Mail, Share2, Github, Linkedin, Instagram, MapPin } from "lucide-react"
-import { Code, Sparkles, Brain, Trophy, Users, Target } from "lucide-react"
-const imageModules = import.meta.glob('/src/images/img/*.{png,jpg,jpeg,svg}', { eager: true });
 import code from "./assests/icon.png";
 
 // Import components
-import { HackathonTimeline } from "./components/HackathonTimeline";
-import { CountdownTimer } from "./components/CountdownTimer";
 import { Header } from "./components/Header";
-import DataCamp from './assests/DC_Donates_logo_inverted.png';
-import Cyber from './assests/cyber.png';
-// Import data
-import { 
-  testimonials, 
-  teamMembers, 
-  evaluationCriteria, 
-  opportunityPoints, 
-  participationBenefits,
-  prizes
-} from "./data";
-
-
-
-type Sponsor = {
-  name: string
-  logo: string
-  url: string
-  tier: 'platinum' | 'gold' | 'silver' | 'partner'
-  text:string
-}
 
 
 const HackathonWebsite = () => {
-  const images = Object.values(imageModules).map((module: any) => module.default);
-  const sponsors: Sponsor[] = [
-    {
-      name: "DataCamp",
-      logo: DataCamp,
-      url: "https://www.datacamp.com/",
-      tier: "platinum",
-      text:"DataCamp equips individuals and companies with the practical skills and tools they need to excel in today's fast-paced, data-driven world."
-    },
-    {
-      name:"cyber Cohesion",
-      logo: Cyber,
-      url: "https://www.cybercohesions.com/",
-      tier: "platinum",
-      text:"DataCamp equips individuals and companies with the practical skills and tools they need to excel in today's fast-paced, data-driven world."
-    }
-    
-  ]
-
-  const sponsorTiers = {
-    platinum: sponsors.filter(s => s.tier === 'platinum'),
-    gold: sponsors.filter(s => s.tier === 'gold'),
-    silver: sponsors.filter(s => s.tier === 'silver'),
-    partners: sponsors.filter(s => s.tier === 'partner')
-  }
 
   return (
     <div className="min-h-screen bg-[#010084] text-white relative overflow-hidden">
       {/* Header Section */}
       <Header />
 
-      {/* Countdown Timer */}
-      <section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
-        <CountdownTimer />
+      <section className="py-20 px-4 flex items-center justify-center" style={{ minHeight: 'calc(100vh - 200px)' }}>
+        <div className="text-center">
+          <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-[#C4E2ED] to-[#00CFFF] text-transparent bg-clip-text">
+            See you in the next Edition!
+          </h2>
+          <p className="text-xl text-gray-300 mt-4">
+            Stay tuned for updates.
+          </p>
+        </div>
       </section>
+
+      {/* Countdown Timer */}
+      {/* <section className="py-16 px-4 bg-[#010084]/50 backdrop-blur-sm">
+        <CountdownTimer />
+      </section> */}
       {/* Sponsors Section bg-gradient-to-b from-[#010084]/50 to-[#220066]/80 */}
 
-      {<section className="py-16 px-4  bg-transparent" id="sponsors">
-        <div className="container mx-auto max-w-6xl">
-          
-          {/*<h2 className="text-8xl md:text-6xl font-bold text-center mb-16">
-            <span className="bg-gradient-to-r from-[#00CFFF] to-[#C4E2ED] text-transparent bg-clip-text">
-              Our Sponsors
-            </span>
-          </h2>*/}
-            {/*sponsors.length > 0 && (
-            <div className="mb-20">
-              <h3 className="text-2xl font-bold text-center mb-10 text-[#00CFFF]">
-              
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center">
-              {sponsors.map((sponsor, index) => (
-                <div className="max-w-md mx-auto bg-gradient-to-br from-[#010084]/50 to-[#220066]/80 border border-blue-700 rounded-xl shadow-lg p-8 hover:shadow-2xl transition-shadow duration-300 hover:from-[#010084]/80 hover:to-[#220066]/100">
-                  <a href={sponsor.url} target="_blank" rel="noopener noreferrer" className="flex justify-center">
-                  <img className="rounded-lg bg-transparent h-28 object-contain grayscale hover:grayscale-0 transition-all duration-300" src={sponsor.logo} alt={sponsor.name} />
-                  </a>
-                  <div className="pt-6 text-center">
-                  <a href={sponsor.url} target="_blank" rel="noopener noreferrer">
-                    <h5 className="mb-3 text-2xl font-bold tracking-tight text-gray-400 hover:text-blue-400 transition-colors duration-300">{sponsor.name}</h5>
-                  </a>
-                  <p className="mb-4 font-normal text-gray-400 hover:text-gray-300 transition-colors duration-300">
-                    {sponsor.text}
-                  </p>
-                  </div>
-                </div>
-              ))}
-              </div>
-            </div>
-            )*/}
-
-
-          {/* Platinum Sponsors */}
-          {/*{sponsorTiers.platinum.length > 0 && (
-            <div className="mb-20">
-              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
-                Platinum Sponsors
-              </h3>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-center">
-                {sponsorTiers.platinum.map((sponsor, index) => (
-                  <a
-                    key={index}
-                    href={sponsor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center p-8 bg-[#010084]/30 backdrop-blur-sm rounded-2xl border-2 border-[#C4E2ED]/30 hover:border-[#C4E2ED]/70 transition-all duration-300 hover:scale-105"
-                  >
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className="max-h-24 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )*/}
-
-          {/* Gold Sponsors */}
-          {/*sponsorTiers.gold.length > 0 && (
-            <div className="mb-20">
-              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
-                Gold Sponsors
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 items-center justify-center">
-                {sponsorTiers.gold.map((sponsor, index) => (
-                  <a
-                    key={index}
-                    href={sponsor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center p-6 bg-[#010084]/30 backdrop-blur-sm rounded-xl border border-[#C4E2ED]/20 hover:border-[#C4E2ED]/50 transition-all duration-300 hover:scale-105"
-                  >
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className="max-h-20 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )*/}
-
-          {/* Silver Sponsors */}
-          {/*sponsorTiers.silver.length > 0 && (
-            <div className="mb-20">
-              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
-                Silver Sponsors
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
-                {sponsorTiers.silver.map((sponsor, index) => (
-                  <a
-                    key={index}
-                    href={sponsor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center p-4 bg-[#010084]/30 backdrop-blur-sm rounded-lg border border-[#C4E2ED]/10 hover:border-[#C4E2ED]/30 transition-all duration-300 hover:scale-105"
-                  >
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className="max-h-16 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )*/}
-
-          {/* Partners */}
-          {/*sponsorTiers.partners.length > 0 && (
-            <div>
-              <h3 className="text-2xl font-bold text-center mb-10 text-[#C4E2ED]">
-                Partners
-              </h3>
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 items-center justify-center">
-                {sponsorTiers.partners.map((sponsor, index) => (
-                  <a
-                    key={index}
-                    href={sponsor.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group flex items-center justify-center p-4 bg-[#010084]/20 backdrop-blur-sm rounded-lg hover:bg-[#010084]/30 transition-all duration-300"
-                  >
-                    <img
-                      src={sponsor.logo}
-                      alt={sponsor.name}
-                      className="max-h-14 object-contain grayscale group-hover:grayscale-0 transition-all duration-500"
-                    />
-                  </a>
-                ))}
-              </div>
-            </div>
-          )*/}
-
-          {/* Become a Sponsor CTA */}
-          
-        </div>
-      </section>}
+      {false && null /* <section className="py-16 px-4  bg-transparent" id="sponsors">
+        <p>Sponsors section</p>
+      </section> */}
 
       {/* About Section */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm" id="about">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl md:text-5xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              A Unique Opportunity
-            </span>
-          </h2>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              {opportunityPoints.map((text, index) => (
-                <div key={index} className="flex items-start gap-4 bg-[#010084]/40 p-6 rounded-xl backdrop-blur-sm">
-                  <div className="flex-shrink-0">
-                    <div className="w-8 h-8 bg-[#C4E2ED]/20 rounded-full flex items-center justify-center">
-                      <Sparkles className="w-4 h-4 text-[#C4E2ED]" />
-                    </div>
-                  </div>
-                  <p className="text-gray-300">{text}</p>
-                </div>
-              ))}
-            </div>
-            <div className="relative">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-blue-500/20 rounded-3xl filter blur-3xl" />
-              <div className="relative bg-[#010084]/40 p-8 rounded-3xl backdrop-blur-sm border border-[#C4E2ED]/20">
-                <h3 className="text-2xl font-bold mb-6 text-[#C4E2ED]">Why Participate?</h3>
-                <div className="space-y-4">
-                  {participationBenefits.map((item, index) => (
-                    <div key={index} className="flex items-center gap-4">
-                      <div className="w-10 h-10 bg-[#C4E2ED]/20 rounded-full flex items-center justify-center">
-                        <item.icon className="w-5 h-5 text-[#C4E2ED]" />
-                      </div>
-                      <p className="text-gray-300">{item.text}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {false && null /* <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm" id="about">
+        <p>About section</p>
+      </section> */}
 
                   
-     {/* <section className="py-16 px-4" id="prizes">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              Prizes & Rewards
-            </span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {prizes.map((prize, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-blue-900/90 to-blue-900/90 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <h3 className="text-xl font-bold mb-4 text-blue-300">{prize.title}</h3>
-                <ul className="space-y-2">
-                  {prize.details.map((detail, i) => (
-                    <li key={i} className="text-gray-300 flex items-center gap-2">
-                      <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-                      {detail}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>*/}
+     {false && null /* <section className="py-16 px-4" id="prizes">
+        <p>Prizes section</p>
+      </section> */}
 
       {/* Timeline Section */}
-     {/* <HackathonTimeline />*/}
+     {false && null /* <HackathonTimeline /> */}
 
       {/* Evaluation Criteria */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              Evaluation Criteria
-            </span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {evaluationCriteria.map((criteria, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-[#010084]/40 to-[#010084]/40 p-6 rounded-xl backdrop-blur-sm border border-[#C4E2ED]/20 hover:border-[#C4E2ED]/40 transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-[#C4E2ED]/20 to-[#C4E2ED]/20 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="w-12 h-12 bg-[#C4E2ED]/20 rounded-full flex items-center justify-center mb-4">
-                  <criteria.icon className="w-6 h-6 text-[#C4E2ED]" />
-                </div>
-                <h3 className="text-xl font-bold mb-2 text-[#C4E2ED]">{criteria.title}</h3>
-                <p className="text-gray-300">{criteria.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {false && null /* <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+        <p>Evaluation Criteria section</p>
+      </section> */}
 
       {/* Testimonials Section */}
-      {/*<section className="py-16 px-4">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              Community Feedback
-            </span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-blue-900/90 to-blue-900/90 p-6 rounded-xl backdrop-blur-sm border border-blue-500/20 hover:border-blue-400/40 transition-all duration-300"
-              >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <div className="flex text-blue-400 mb-4">{"★".repeat(testimonial.stars)}</div>
-                <p className="text-gray-300 mb-4 italic">"{testimonial.text}"</p>
-                <p className="font-bold text-blue-300">{testimonial.name}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>*/}
+      {false && null /* <section className="py-16 px-4">
+        <p>Testimonials section</p>
+      </section> */}
 
       {/* Team Section */}
-      {/*<section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              Innovation Team
-            </span>
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 justify-items-center">
-            {teamMembers.map((member, index) => (
-              <div
-                key={index}
-                className="group relative bg-gradient-to-br from-[#010084]/40 to-[#010084]/40 p-6 rounded-xl backdrop-blur-sm border border-[#C4E2ED]/20 hover:border-[#C4E2ED]/40 transition-all duration-300 text-center"
-              >
-                <img
-                  src={member.image || "/placeholder.svg"}
-                  alt={member.name}
-                  className="w-24 h-24 rounded-full mx-auto mb-4 object-cover border-2 border-blue-500/20"
-                />
-                <h3 className="text-xl font-bold mb-2 text-[#C4E2ED]">{member.name}</h3>
-                <p className="text-gray-300 text-sm">{member.role}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>*/}
+      {false && null /* <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+        <p>Team section</p>
+      </section> */}
 
       {/* Gallery Section */}
-      <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
-        <div className="container mx-auto max-w-6xl">
-          <h2 className="text-4xl font-bold text-center mb-12">
-            <span className="bg-gradient-to-r from-[#C4E2ED] to-[#C4E2ED] text-transparent bg-clip-text">
-              Last Edition Gallery
-            </span>
-          </h2>
-
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            {images.map((image, index) => (
-              <div
-                key={index}
-                className={`relative overflow-hidden rounded-xl ${
-                  (index+1)%5==0  ? "col-span-2 row-span-2" : index==images.length-1 ? "col-span-23" : ""
-                }`}
-              >
-                <img
-                  src={image || "/placeholder.svg"}
-                  alt={`Gallery image ${index + 1}`}
-                  className="w-full h-full object-cover aspect-square transition-transform duration-500 hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-blue-950/30 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
-                  
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section> {/* End of Gallery Section */}
+      {false && null /* <section className="py-16 px-4 bg-[#010084]/30 backdrop-blur-sm">
+        <p>Gallery section</p>
+      </section> */} {/* End of Gallery Section */}
 
       {/* Sponsors Section */}
       
@@ -463,4 +135,3 @@ const HackathonWebsite = () => {
 }
 
 export default HackathonWebsite
-
